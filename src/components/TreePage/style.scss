@@ -1,0 +1,192 @@
+@import '~styles/colors';
+@import '~styles/cardShadows';
+
+:local(.Wrapper) {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 50;
+}
+
+:local(.ContentPane) {
+  position: fixed;
+  left: 15px;
+  top: 15px;
+  height: calc(100% - 50px);
+  width: calc(100% - 50px);
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  opacity: 1;
+  background: $c-white;
+  z-index: 60;
+  box-shadow: $card-shadow-2;
+  transition: width 0.5s ease, height 0.5s ease, opacity 0.3s 0.5s ease;
+}
+
+:local(.TreeView) {
+  position: fixed;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 70;
+  padding-bottom: 100px;
+}
+
+:local(.Branch) {
+  display: flex;
+  flex-direction: row;
+  flex: 0;
+}
+
+:local(.Tweet) {
+  flex: 0;
+  position: relative;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -10px;
+    top: 70px;
+    background: $c-indigo;
+    height: 1px;
+    width: 20px;
+    opacity: 0.01;
+    transition: opacity .3s ease;
+    animation: cardIn 1s 1.5s 1 ease forwards;
+  }
+
+  &.hasSubs:after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 5px;
+    top: 60px;
+    background: $c-indigo;
+    height: calc(100% - 158px);
+    width: 1px;
+    opacity: 0.01;
+    transition: opacity .3s ease;
+    animation: cardIn 1s 1.5s 1 ease forwards;
+  }
+
+  .Card {
+    margin: 15px;
+    width: 350px;
+    box-shadow: $card-shadow-3, inset 0 0 0 2px $c-white;
+    border-radius: 4px;
+    transform: translateY(60px);
+    opacity: 0.01;
+    animation: cardIn 1s 1 ease forwards;
+  }
+}
+
+:local(.Responses) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+:local(.BackButton) {
+  display: block;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  left: 10px;
+  top: 50%;
+  margin-top: -25px;
+  z-index: 1000;
+  border-radius: 25px;
+  background: $c-white;
+  padding: 10px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+  transform: scale(0.95);
+  box-shadow: $card-shadow-4;
+  color: $c-indigo;
+
+  [class^="icon-"], [class*=" icon-"] {
+    display: inline-block;
+    fill: currentColor;
+  }
+
+  &:hover {
+    transform: scale(1);
+    box-shadow: $card-shadow-5;
+  }
+
+  &:active {
+    transform: scale(0.90);
+    box-shadow: $card-shadow-3;
+  }
+}
+
+:local(.Wrapper) {
+  &.page-enter {
+    :local(.ContentPane) {
+      width: 600px;
+      height: 3px;
+      background: $c-white;
+      box-shadow: none;
+    }
+
+    :local(.BackButton) {
+      transform: translateX(-100px);
+    }
+  }
+
+  &.page-leave {
+    .Card {
+      animation: cardOut 1s 1 ease forwards !important;
+    }
+
+    :local(.BackButton) {
+      transform: translateX(-100px);
+    }
+  }
+
+  &.page-leave-active {
+    :local(.ContentPane) {
+      width: 600px;
+      height: 60px;
+      border-bottom: 1px solid $c-light-indigo;
+      background: $c-white;
+      opacity: 0;
+      box-shadow: none;
+    }
+
+    :local(.Tweet) {
+      &:before {
+        display: none;
+      }
+
+      &.hasSubs:after {
+        display: none;
+      }
+    }
+  }
+}
+
+@keyframes cardIn {
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes cardOut {
+  from {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(0px);
+    opacity: 0;
+  }
+}

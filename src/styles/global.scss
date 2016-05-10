@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css?family=Amatic+SC");
+@import url("https://fonts.googleapis.com/css?family=Roboto:400");
+@import "./normalize";
+@import "./basicss";
+@import "colors";
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  background: $c-indigo;
+}

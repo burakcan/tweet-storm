@@ -1,0 +1,82 @@
+/**
+* 1. http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+*    http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+*    http://fatihhayrioglu.com/css3-box-sizing-ozelligi/
+*
+* 2. http://aestheticallyloyal.com/public/optimize-legibility/
+*
+* 3. http://maxvoltar.com/archive/-webkit-font-smoothing
+*
+* 4. http://maximilianhoffmann.com/posts/better-font-rendering-on-osx
+*    http://stackoverflow.com/questions/14409647/how-to-antialias-svg-text-in-firefox/18310579#18310579
+*
+* 5. http://www.sitepoint.com/cross-browser-web-fonts-part-3/
+*    http://clagnut.com/sandbox/css3/
+*    http://blog.typekit.com/2014/02/05/kerning-on-the-web/
+*    https://developer.mozilla.org/en-US/docs/Web/CSS/font-kerning
+*
+* 6. http://css-tricks.com/almanac/properties/h/hyphenate/
+*
+* 7. Bu özelliği isteğe bağli kullanabilir veya kaldırabilirsiniz. Detaylı bilgi için alttaki sayfaya göz atın
+*    http://css-tricks.com/snippets/css/remove-gray-highlight-when-tapping-links-in-mobile-safari/
+*/
+
+*, *:before, *:after {
+  box-sizing: inherit; /* 1 */
+}
+
+html {
+  box-sizing: border-box; /* 1 */
+  font-weight: normal;
+  font-size: 100%;
+  line-height: normal;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+body, input, textarea, select, button {
+  text-rendering: optimizeLegibility; /* 2 */
+  -webkit-font-smoothing: antialiased; /* 3 */
+  -moz-osx-font-smoothing: grayscale; /* 4 */
+}
+
+p {
+  font-feature-settings: "kern" 1; /* 5 */
+  font-kerning: normal; /* 5 */
+  hyphens: auto; /* 6 */
+}
+
+a {
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* 7 */
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: underline;
+  }
+}
+
+img {
+    vertical-align: middle;
+}
+
+blockquote, dl, dd, h1, h2, h3, h4, h5, h6, figure, p, pre, fieldset, ul, ol, menu {
+  margin: 0;
+}
+
+button, fieldset, iframe {
+  border: 0;
+}
+
+fieldset, nav ul, nav ol, button, menu {
+  padding: 0;
+}
+
+nav ol, nav ul {
+  list-style: none;
+}
+
+textarea {
+    resize: vertical;
+}

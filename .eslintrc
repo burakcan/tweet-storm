@@ -1,0 +1,29 @@
+{
+  "fix": true,
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "react/jsx-curly-spacing": 0,
+    "react/jsx-uses-react": 2,
+    "react/jsx-uses-vars": 2,
+    "react/react-in-jsx-scope": 2,
+    "react/prefer-stateless-function": 1,
+    "no-var": 1,
+    "vars-on-top": 1,
+    "comma-dangle": 1,
+    "no-use-before-define": 0
+  },
+  "plugins": [
+    "react"
+  ],
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        config: './utils/build/webpack.config.base.js'
+      }
+    }
+  }
+}

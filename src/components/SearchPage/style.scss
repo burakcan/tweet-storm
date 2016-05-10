@@ -1,0 +1,193 @@
+@import '~styles/colors';
+@import '~styles/cardShadows';
+
+:local(.Wrapper) {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
+:local(.LeftPane) {
+  position: fixed;
+  left: 0;
+  top: 1%;
+  height: 98%;
+  width: 45%;
+  background: $c-white;
+  z-index: 20;
+  animation: leftPaneIn 1s 0.1s ease 1 forwards;
+  transform-origin: left;
+  transform: scale(0.98);
+}
+
+:local(.SearchForm) {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 30;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+:local(.InputBorder) {
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: #E8EAF6;
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 0;
+    height: 3px;
+    transition: width 0.5s ease;
+    transform: translateX(-50%);
+    background: $c-indigo;
+  }
+}
+
+:local(.SearchInput) {
+  display: block;
+  width: 600px;
+  height: 60px;
+  border: none;
+  outline: none;
+  z-index: 30;
+  animation: searchInputIn 1s 0.1s ease 1 forwards;
+  text-align: center;
+  color: $c-indigo;
+  transition: height 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55), color 0.3s ease;
+
+  &:focus ~ :local(.InputBorder):after {
+    width: 100%;
+  }
+}
+
+:local(.Wrapper).busy, .page-leave-active {
+  :local(.SearchInput) {
+    color: transparent;
+    height: 3px;
+  }
+
+  :local(.InputBorder):after {
+    left: 0;
+    animation: progress 2s infinite ease forwards;
+    width: 50%;
+  }
+}
+
+:local(.Wrapper) {
+  &.page-leave-active {
+    :local(.LeftPane) {
+      animation: leftPaneOut 0.75s ease 1 forwards;
+    }
+  }
+}
+
+:local(.Logo) {
+  font-family: 'Amatic SC', cursive;
+  position: fixed;
+  font-size: 48px;
+  z-index: 100;
+  top: 20%;
+  left: 50%;
+  font-weight: 400;
+  transform: translateX(-50%);
+  color: $c-white;
+  text-align: center;
+}
+
+:local(.SubmitButton) {
+  display: block;
+  width: 60px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: transparent;
+  padding: 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: $c-indigo;
+
+  [class^="icon-"], [class*=" icon-"] {
+    display: inline-block;
+    fill: currentColor;
+  }
+}
+
+:local(.DevelopedBy) {
+  position: fixed;
+  z-index: 100;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: $c-white;
+  text-align: center;
+  line-height: 28px;
+
+  a {
+    text-decoration: underline;
+    color: inherit;
+  }
+
+  [class^="icon-"], [class*=" icon-"] {
+    margin: 0 7px;
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    fill: currentColor;
+    vertical-align: sub;
+  }
+}
+
+@keyframes leftPaneIn {
+  to {
+    transform: scale(1);
+    box-shadow: $card-shadow-2;
+  }
+}
+
+@keyframes leftPaneOut {
+  from {
+    transform: scale(1) translateX(0);
+  }
+
+  to {
+    transform: scale(1) translateX(-100%);
+  }
+}
+
+@keyframes searchFormOut {
+  to {
+    transform: translateX(-100vw) translateY(-50%);
+  }
+}
+
+@keyframes searchInputIn {
+  to {
+    transform: scale(1);
+    box-shadow: $card-shadow-3;
+  }
+}
+
+@keyframes progress {
+  from {
+    width: 0;
+    transform: translateX(0%);
+  }
+
+  to {
+    width: 100%;
+    transform: translateX(100%);
+  }
+}
