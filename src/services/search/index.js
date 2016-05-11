@@ -9,7 +9,7 @@ const fetch = createFetch(
   accept('application/json')
 );
 
-const tweetURLReg = /^https?:\/\/twitter\.com\/(?:#!\/)?(\w+)\/status(es)?\/(\d+)$/;
+const tweetURLReg = /^https?:\/\/twitter\.com\/(?:#!\/)?(\w+)\/status(es)?\/(\d+)[^\d]*$/;
 
 export function parseURL(value) {
   const raw = value.match(tweetURLReg);
