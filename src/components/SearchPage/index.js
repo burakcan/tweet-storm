@@ -2,16 +2,29 @@ import React, { Component, PropTypes } from 'react';
 import cx from 'classnames';
 import styles from './style.scss';
 
+const exampleThreads = [
+  'https://twitter.com/jasonsantamaria/status/730381255825575937',
+  'https://twitter.com/mjackson/status/730210117740724224',
+  'https://twitter.com/dan_abramov/status/730203506553016320',
+];
+
 export default class SearchPage extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.onSearch = this.onSearch.bind(this);
+    this.showExample = this.showExample.bind(this);
   }
 
   onSearch(e) {
     e.preventDefault();
     this.props.onSearch(this.refs.SearchInput.value);
+  }
+
+  showExample(e) {
+    e.preventDefault();
+    const index = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
+    this.props.onSearch(exampleThreads[index]);
   }
 
   render() {
@@ -43,6 +56,9 @@ export default class SearchPage extends Component {
           </button>
           <div className={ styles.InputBorder } />
         </form>
+        <div className={ styles.ExampleLink }>
+          <a href="#" onClick={ this.showExample }>Or click here to see an example thread.</a>
+        </div>
         <div className={ styles.DevelopedBy }>
           <svg
             className="icon-code"

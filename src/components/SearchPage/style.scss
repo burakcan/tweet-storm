@@ -82,6 +82,11 @@
     animation: progress 2s infinite ease forwards;
     width: 50%;
   }
+
+  :local(.ExampleLink) {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 :local(.Wrapper) {
@@ -124,6 +129,26 @@
     fill: currentColor;
   }
 }
+
+:local(.ExampleLink) {
+  position: fixed;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: $c-white;
+  text-align: center;
+  margin-top: 80px;
+  line-height: 28px;
+  transition: opacity .3s ease;
+
+  a {
+    text-decoration: underline;
+    color: inherit;
+  }
+}
+
+
 
 :local(.DevelopedBy) {
   position: fixed;
