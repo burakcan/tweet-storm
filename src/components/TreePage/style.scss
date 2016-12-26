@@ -40,11 +40,11 @@
 :local(.Branch) {
   display: flex;
   flex-direction: row;
-  flex: 0;
+  flex: auto;
 }
 
 :local(.Tweet) {
-  flex: 0;
+  flex: auto;
   position: relative;
 
   &:before {
