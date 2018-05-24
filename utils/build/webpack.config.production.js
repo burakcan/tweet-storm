@@ -13,18 +13,16 @@ module.exports = Object.assign(baseConfig, {
   devtool: false,
 
   entry: Object.assign(baseConfig.entry, {
-    main: [
-      'babel-polyfill',
-      'whatwg-fetch',
-      path.join(srcPath, '/index.js')
-    ],
+    main: ['babel-polyfill', 'whatwg-fetch', path.join(srcPath, '/index.js')],
   }),
 
   module: Object.assign(baseConfig.module, {
-    loaders: baseConfig.module.loaders.concat([{
-      test: /\.scss/,
-      loader: extractCSS.extract(['css', 'postcss', 'sass']),
-    }]),
+    loaders: baseConfig.module.loaders.concat([
+      {
+        test: /\.scss/,
+        loader: extractCSS.extract(['css', 'sass']),
+      },
+    ]),
   }),
 
   plugins: baseConfig.plugins.concat([

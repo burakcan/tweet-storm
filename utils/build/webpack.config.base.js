@@ -1,5 +1,4 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 const path = require('path');
 
@@ -17,17 +16,19 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loader: 'eslint-loader',
-      }
+      },
     ],
     loaders: [
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-      }, {
+      },
+      {
         test: /\.json$/,
-        loader: 'json-loader'
-      }, {
+        loader: 'json-loader',
+      },
+      {
         test: /\.svg|.png|.jpg/,
         loader: 'file',
       },
@@ -65,19 +66,13 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.EnvironmentPlugin([
-      'NODE_ENV',
-    ]),
+    new webpack.EnvironmentPlugin(['NODE_ENV']),
     new HtmlWebpackPlugin({
       template: path.join(srcPath, 'index.html'),
       filename: 'index.html',
       chunks: ['main', 'commons'],
     }),
   ],
-
-  postcss: function() {
-    return [autoprefixer];
-  },
 
   externals: [],
 };

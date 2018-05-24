@@ -14,18 +14,20 @@ module.exports = Object.assign(baseConfig, {
 
   module: Object.assign(baseConfig.module, {
     preLoaders: [],
-    loaders: baseConfig.module.loaders.concat([{
-      test: /\.scss/,
-      loaders: ['style', 'css', 'postcss', 'sass'],
-    }]),
+    loaders: baseConfig.module.loaders.concat([
+      {
+        test: /\.scss/,
+        loaders: ['style', 'css', 'postcss', 'sass'],
+      },
+    ]),
   }),
 
   plugins: [],
 
   externals: {
-    'cheerio': 'window',
+    cheerio: 'window',
     'react/addons': true,
     'react/lib/ExecutionEnvironment': true,
     'react/lib/ReactContext': true,
-  }
+  },
 });

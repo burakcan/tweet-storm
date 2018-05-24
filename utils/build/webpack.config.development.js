@@ -19,10 +19,12 @@ module.exports = Object.assign(baseConfig, {
   }),
 
   module: Object.assign(baseConfig.module, {
-    loaders: baseConfig.module.loaders.concat([{
-      test: /\.scss/,
-      loaders: ['style', 'css', 'postcss', 'sass'],
-    }]),
+    loaders: baseConfig.module.loaders.concat([
+      {
+        test: /\.scss/,
+        loaders: ['style', 'css', 'sass'],
+      },
+    ]),
   }),
 
   plugins: baseConfig.plugins.concat([
