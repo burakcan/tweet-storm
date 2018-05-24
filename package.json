@@ -17,8 +17,8 @@
     "start": "node api"
   },
   "engines": {
-    "node": ">=6.0.0",
-    "npm": ">=3.0.0"
+    "npm": "3.0.0",
+    "node": "6.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
